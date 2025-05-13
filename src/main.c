@@ -11,6 +11,7 @@
 RenderTexture2D renderer;
 Texture2D floorTest;
 Entity player;
+CollisionDiamond sampleDia;
 
 void init() {
   renderer = LoadRenderTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -18,15 +19,21 @@ void init() {
 
   floorTest = LoadTexture("assets/backgrounds/cyan_floor.png");
   player = createEntity();
+
+  sampleDia = (CollisionDiamond){ 20,20, (Vector2){200, 100}};
 }
 
 void update() {
   updateEntity(&player);
   receivePlayerInputs(&player);
+  updateEntityCollisionState(&player, sampleDia);
+  //debugPrintCollisionState(&player);
 }
 
 void draw() {
   DrawTexture(floorTest, SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, WHITE);
+  displayDiamond(sampleDia, GREEN);
+  displayDiamond(player.colDiamond, GREEN);
   drawEntity(&player);
 }
 

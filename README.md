@@ -15,6 +15,9 @@ This game was created for a week-long game jam under the theme **"From the Dead.
 - **Survival Pressure:** Manage hunger, suspicion, and bodily decay over the course of 7 dreadful workdays.
 - **Slapstick Horror:** Absurd, comedic take on office life — limbs might fall off, coffee might go flying.
 
+## Game Design Document
+- https://sites.google.com/view/thegraveyardshift/home?read_current=1
+
 ## 🖼️ Style & Genre
 
 - **Perspective:** Isometric 2D pixel art
