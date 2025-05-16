@@ -2,43 +2,55 @@
 #include <stdlib.h>
 #include <raylib.h>
 #include <math.h>
-#include "entity.h"
+#include "environment.h"
 
 #define TITLE "The Graveyard Shift"
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 360
 
 RenderTexture2D renderer;
-Texture2D floorTest;
 Entity player;
-CollisionDiamond sampleDia;
+Texture2D sampleTexture;
 
 void init() {
   renderer = LoadRenderTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
   SetTextureFilter(renderer.texture, TEXTURE_FILTER_POINT);
 
-  floorTest = LoadTexture("assets/backgrounds/cyan_floor.png");
   player = createEntity();
-
-  sampleDia = (CollisionDiamond){ 20,20, (Vector2){200, 100}};
+  receivePlayerInputs(&player);
+  unfreeze(&player);
+  initEnvironment();
+  initTasks();
 }
+
+
 
 void update() {
   updateEntity(&player);
   receivePlayerInputs(&player);
-  updateEntityCollisionState(&player, sampleDia);
-  //debugPrintCollisionState(&player);
+  interact(&player);
+  updateTasks();
 }
 
 void draw() {
-  DrawTexture(floorTest, SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, WHITE);
-  displayDiamond(sampleDia, GREEN);
-  displayDiamond(player.colDiamond, GREEN);
+  drawEnvironment();
   drawEntity(&player);
+  drawTasks();
+
+//debug
+  Vector2 mouse = GetMousePosition();
+
+  char buffer[32];
+  snprintf(buffer, sizeof(buffer), "(%.0f, %.0f)", mouse.x, mouse.y);
+
+  // Draw at top-left corner of screen
+  DrawText(buffer, 10, 10, 20, RAYWHITE);
 }
 
 void cleanup() {
-  UnloadTexture(floorTest);
+  UnloadTexture(sampleTexture);
+  cleanEnvironment();
+  cleanTasks();
 }
 
 void drawRenderer() {

@@ -4,14 +4,8 @@ typedef struct {
   float w;
   float h;
   Vector2 pos;
-  bool visible;
 } CollisionBox;
 
-
-typedef struct {
-  float w,h;
-  Vector2 pos;
-} CollisionDiamond;
 
 typedef struct {
   bool top, bottom, left, right;
@@ -19,7 +13,9 @@ typedef struct {
 
 
 void displayColBox(CollisionBox *colBox);
-void displayDiamond(CollisionDiamond diamond, Color color);
+bool boxOverlap(CollisionBox *a, CollisionBox *b);
 
-bool pointInDiamond(Vector2 p, CollisionDiamond d);
-void getDiamondCorners(CollisionDiamond d, Vector2 out[4]);
+bool isPointInBox(Vector2 point, CollisionBox box);
+
+void DrawCollisionBox(CollisionBox box, Color color);
+
