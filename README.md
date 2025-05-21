@@ -1,3 +1,8 @@
+# PROJECT ABANDONED
+Game abandoned for the assets and code to be repurposed to a better project in the future. 
+The emergent concept and game that resulted in this was extremely dull.
+
+
 # 🧟‍♂️ The Graveyard Shift
 
 *A slapstick stealth-puzzle game about surviving your soul-sucking office job... as a literal zombie.*
